@@ -1,1 +1,90 @@
-Hellow World
+<html>
+<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
+<title>Candy Blaster</title>
+
+<!-- JS -->
+<script src='scripts/jquery.min.js'></script>
+<script src='scripts/page.js'></script>
+<script src='scripts/gup.js'></script>
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="style/style.css">
+
+<!-- HTML -->
+<body>
+  <div class='outer-container'>
+      <div id="overlay" style = "display:block">
+        <div class = "overlay-content">
+          <h1> Candy Blast</h1>
+          <h3> Created by Mara Gordon </h3>
+          <h4> How to play Candy Blast: <h4>
+          Objective: Shoot lollipops at candy to destory them before they destroy you. Get the bubble gum shield for protection. <br> Space: Fire a Lollipop <br> To move the ship use... <br>&larr;: to move left<br> &rarr; : to move right <br> &uarr; : to move up <br> &darr; : to move down <br>
+          <input type="button" name = "Start-Game" value = "Start Candy Blast" onclick="start()">
+        </div>
+      </div>
+      <div class='game-window'>
+        <div class = 'ship-life'></div>
+        <div id='enterprise' class='ship'>
+          <div id='explosion' class='ship-explode' style="display: none;">
+            <img class='exp-avatar' src='img/explosion.png' height='50px'/>
+          </div>
+          <div id='shield' class='ship-shield' style="display: none;">
+            <img class='shield-avatar' src='img/shield.png' height='70px'/>
+          </div>
+          <img class='ship-avatar' src='img/fighter.png' height='50px'/> <!--ship img: src='http://i.stack.imgur.com/rsH6n.png'-->
+        </div>
+    </div>
+
+    <div class='game-over' id = 'game-over-id' style="display: none;">
+      <h1>GAME OVER!</h1>
+      <p>Your Score:</p>
+      <h1 id='end-score'>0</h1>
+      <input type="button" name = "restart" value = "Go Back" onclick="restart()">
+    </div>
+
+    <div class='status-window' style='text-align: center'>
+      <audio id='lollipop-sound'>
+        <source src='audio/lollipop.wav'>
+      </audio>
+      <audio id='explosion-sound'>
+        <source src='audio/explode.wav'>
+      </audio>
+      <audio id='over-sound'>
+        <source src='audio/gameover.wav'>
+      </audio>
+      <audio id='splash-sound'>
+        <source src='audio/intro.mp3'>
+      </audio>
+
+      <h3>Welcome!</h3>
+      <hr>
+      <br>
+      <p>score:</p>
+      <h1 id='score-box'>0</h1>
+      <div class = 'points'style="
+      position: relative;
+      top: -50px;
+      left: 60;">
+      </div>
+      <p>rate:</p>
+      <h1 id='acc-box'>0</h1>
+       <div class = 'points' style="position: relative; 
+       top: -50px; left:50px">
+        %
+      </div>
+      <input type="button" name = "open-panel" value = "Open Setting Panel" id = "openButton" onclick="showPanel()" style="margin: 0 auto;">
+      <input type="button" name = "open-panel" value = "Close Setting Panel" onclick="hidePanel()" id="closeButton" style="display:none; margin: 0 auto;">
+      <div id = "setting-panel" style = "display:none">
+        
+        Candy Spwaning Rate<br>
+        (# per second)<br>
+        <input type = "text" name = "speed" id = "speed-input" placeholder = "Min 0.2 Max. 4" onblur = "alertCheck()">
+        <br>Mute Audio
+        <input type="checkbox" id="myCheck"/checked><br>
+        <input type="button" name = "update-panel" value = "Update" onclick="updatePanel()">
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

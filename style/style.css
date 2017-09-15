@@ -1,0 +1,80 @@
+body{
+  font-family: 'Exo 2', sans-serif;
+}
+
+/* Main Containers */
+.outer-container {
+  height: 600px;
+  width: 500px;
+  background: lightpink;
+  color: white;
+  border: 5px solid #ccc;
+}
+.game-window {
+  height: 100%;
+  width: 300px;
+  background: #222;
+  border-right: 3px solid #ccc;
+  float: left;
+  background-image: url('../img/background.gif');
+}
+.ship-life{
+  top:0px;
+  left:288px;
+  position: relative;
+}
+.status-window {
+  height: 100%;
+  width: 197px;
+  color: white;
+  float: right;
+  background: lightpink;
+}
+
+#overlay{
+  position: absolute;
+  height: 600px;
+  width: 300px;
+  color:white;
+  background-color: gray;
+  opacity: 0.8;
+  z-index:1001;
+}
+
+
+/* Game Objects */
+.ship {
+  top: 500px;
+  left: 122px;
+  position: relative;
+  display: inline-block;
+  z-index:100;
+}
+.lollipop {
+  position: absolute;
+}
+.lollipop img {
+  height: 40px;
+}
+.candy {
+  position: absolute;
+}
+.shield {
+  position: absolute;
+  z-index: 1000;
+}
+.shield-avatar {
+  position: absolute;
+  z-index: 1000;
+  top:-2px; 
+  left:-6px;
+}
+
+
+#setting-panel{
+  text-align: center;
+}
+#explosion{
+  position:absolute;
+  top:-40px;
+}
