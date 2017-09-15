@@ -28,17 +28,12 @@ var SCORE_UNIT = 100;  // scoring is in 100-point units
 // Size vars
 var maxShipPosX, maxShipPosY;
 
-// Global Window Handles (gwh__)
+// Global Window Handles
 var gwhGame, gwhOver, gwhStatus, gwhScore, gwhAcc, gwhLives, gwhEnd; //add
 
 // Global Object Handles
 var ship;
 
-
-/*
- * This is a handy little container trick: use objects as constants to collect
- * vals for easier (and more understandable) reference to later.
- */
 var KEYS = {
   left: 37,
   up: 38,
@@ -48,9 +43,6 @@ var KEYS = {
   spacebar: 32
 }
 
-
-////  Functional Code  ////
-// Main
 $(document).ready( function() {
   lives = gup("life");
   maxAstDest = gup("itemRate");
@@ -81,6 +73,7 @@ $(document).ready( function() {
       clearInterval(interval);
     }
   },1000);
+
   // Set global handles (now that the page is loaded)
   gwhGame = $('.game-window');
   gwhOver = $('.game-over');
@@ -103,7 +96,7 @@ $(document).ready( function() {
     checkCollisions();  // Remove elements if there are collisions
   }, 100);
 });
-//add
+
 function getLives(){
   lives = gup("life");
   if (lives == null){
@@ -120,7 +113,7 @@ function getLives(){
   }
 }
 
-//add ----fix so it doesn't reload
+
 function restart(){
   //reset accuracy
   console.log("go back button");
@@ -149,10 +142,8 @@ function restart(){
   $('.candy').remove();  // remove all candys
   $('.shield').remove();
   console.log("remove everything");
-  //musi
 }
 
-//add
 function alertCheck(){
   s = document.getElementById('speed-input').value;
   console.log("speed: "+s);
@@ -165,7 +156,6 @@ function alertCheck(){
   s = 1/s;
 }
 
-//add
 function start(){
   state = 1;
   console.log("state is now 1");
@@ -199,7 +189,7 @@ function keydownRouter(e) {
     case KEYS.spacebar:
       if (state == 1){
         firelollipop();
-        numlollipops++; //add
+        numlollipops++; 
         console.log("numlollipops: " + numlollipops);
       }
       break;
@@ -214,7 +204,6 @@ function keydownRouter(e) {
   }
 }
 
-//add show panel
 function showPanel() {  
    document.getElementById('setting-panel').style.display = "block";
    document.getElementById('openButton').style.display = "none";
@@ -227,7 +216,6 @@ function hidePanel(){
   document.getElementById('setting-panel').style.display = "none";
 }
 
-//add update
 function updatePanel(){
   //update all things
   //and close
@@ -239,9 +227,6 @@ function updatePanel(){
 // Check for any collisions and remove the appropriate object if needed
 function checkCollisions() {
   // First, check for lollipop-candy checkCollisions
-  /* NOTE: We dont use a global handle here because we need to refresh this
-   * list of elements when we make the reference.
-   */
   $('.lollipop').each( function() {
     var curlollipop = $(this);  // define a local handle for this lollipop
     $('.candy').each( function() {
@@ -392,12 +377,8 @@ function createShield() {
 
   shieldIdx++;  // update the index to maintain uniqueness next time
 
-  // Set size of the candy (semi-randomized)
   curShield.append("<img src='img/shield.png'/>")
 
-  /* NOTE: This position calculation has been moved lower since verD -- this
-  **       allows us to adjust position more appropriately.
-  **/
   // Pick a random starting position within the game window
   var startingPosition = Math.random() * (gwhGame.width()-50);  // Using 50px as the size of the candy (since no instance exists yet)
 
@@ -407,7 +388,7 @@ function createShield() {
   // Make the candys fall towards the bottom
   setInterval( function() {
     curShield.css('top', parseInt(curShield.css('top'))+candy_SPEED);
-    // Check to see if the candy has left the game/viewing window
+    // Check to see if the candy has left the game window
     if (parseInt(curShield.css('top')) > (gwhGame.height() - curShield.height())) {
       curShield.remove();
     }
@@ -417,7 +398,6 @@ function createShield() {
 function createcandy() {
   console.log('Spawning candy...');
 
-  // NOTE: source - http://www.clipartlord.com/wp-content/uploads/2016/04/aestroid.png
   var candyDivStr = "<div id='a-" + candyIdx + "' class='candy'></div>"
   // Add the lollipop to the screen
   gwhGame.append(candyDivStr);
@@ -426,15 +406,12 @@ function createcandy() {
 
   candyIdx++;  // update the index to maintain uniqueness next time
 
-  // Set size of the candy (semi-randomized)
+  // Set size of the candy
   var astrSize = MIN_candy_SIZE + (Math.random() * (MAX_candy_SIZE - MIN_candy_SIZE));
   curcandy.css('width', astrSize+"px");
   curcandy.css('height', astrSize+"px");
   curcandy.append("<img src='img/candy.png' height='" + astrSize + "'/>")
 
-  /* NOTE: This position calculation has been moved lower since verD -- this
-  **       allows us to adjust position more appropriately.
-  **/
   // Pick a random starting position within the game window
   var startingPosition = Math.random() * (gwhGame.width()-astrSize);  // Using 50px as the size of the candy (since no instance exists yet)
 
@@ -451,14 +428,11 @@ function createcandy() {
   }, OBJECT_REFRESH_RATE);
 }
 
-// Handle "fire" [lollipop] events
 function firelollipop() {
   console.log('Firing lollipop...');
-  //var reqButton:URLRequest = new URLRequest("audio/lollipop.wav");
   if(document.getElementById("myCheck").checked == false){ 
     document.getElementById('lollipop-sound').play();
   }
-  // NOTE: source - https://www.raspberrypi.org/learning/microbit-game-controller/images/missile.png
   var lollipopDivStr = "<div id='r-" + lollipopIdx + "' class='lollipop'><img src='img/lollipop.png'/></div>";
   // Add the lollipop to the screen
   gwhGame.append(lollipopDivStr);
@@ -483,7 +457,6 @@ function firelollipop() {
   }, OBJECT_REFRESH_RATE);
 }
 
-// Handle ship movement events
 function moveShip(arrow) {
   switch (arrow) {
     case KEYS.left:  // left arrow
