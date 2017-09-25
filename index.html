@@ -5,7 +5,6 @@
 <!-- JS -->
 <script src='scripts/jquery.min.js'></script>
 <script src='scripts/page.js'></script>
-<script src='scripts/gup.js'></script>
 
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="style/style.css">
@@ -24,7 +23,7 @@
       </div>
       <div class='game-window'>
         <div class = 'ship-life'></div>
-        <div id='enterprise' class='ship'>
+        <div class='ship'>
           <div id='explosion' class='ship-explode' style="display: none;">
             <img class='exp-avatar' src='img/explosion.png' height='50px'/>
           </div>
@@ -66,7 +65,7 @@
       top: -50px;
       left: 60;">
       </div>
-      <p>rate:</p>
+      <p>accuracy:</p>
       <h1 id='acc-box'>0</h1>
        <div class = 'points' style="position: relative; 
        top: -50px; left:50px">
@@ -80,8 +79,8 @@
         (# per second)<br>
         <input type = "text" name = "speed" id = "speed-input" placeholder = "Min 0.2 Max. 4" onblur = "alertCheck()">
         <br>Mute Audio
-        <input type="checkbox" id="myCheck"/checked><br>
-        <input type="button" name = "update-panel" value = "Update" onclick="updatePanel()">
+        <input type="checkbox" id="audioCheckBox"/checked><br>
+        <input type="button" name = "update-panel" value = "Update" onclick="hidePanel()">
       </div>
     </div>
   </div>
